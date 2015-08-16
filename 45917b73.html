@@ -55,6 +55,15 @@
  </div>
 </div>
 
+ </div>
+ <div class="button-bar">
+     <a class="button" style="background:white; color:red" id="outlet_on">Outlet_On</a>
+     <a class="button" style="background:black; color:green" id="outlet_off">Outlet_Off</a>
+ </div>
+</div>
+
+
+
 <script src="http://api.easylink.io/assets/js/mqttws31.js"></script>
 <script>
     // 从url中获取某个参数的值
@@ -142,6 +151,31 @@
         }
         // document.querySelector('#send2uart').addEventListener('touchstart', send2uart);
         document.querySelector('#send2uart').addEventListener('click', send2uart);
+
+
+
+
+        function outlet_on() {
+            var topic = device_id+'/in/write';
+            var commond = '{"micokit_outlet":true}';
+            client.publish(topic, commond);
+        }
+        // document.querySelector('#led_on').addEventListener('touchstart', led_on);
+        document.querySelector('#outlet_on').addEventListener('click',outlet_on);
+        
+
+         function outlet_off() {
+            var topic = device_id+'/in/write';
+            var commond = '{"micokit_outlet":false}';
+            client.publish(topic, commond);
+        }
+        // document.querySelector('#led_on').addEventListener('touchstart', led_on);
+        document.querySelector('#outlet_off').addEventListener('click',outlet_off);
+
+
+
+
+
 
         function led_on() {
             var topic = device_id+'/in/write';
